@@ -1,0 +1,32 @@
+.scrollbar {
+    max-height: 77vh; /* Stellt sicher, dass sie nicht größer wird */
+    overflow-y: auto; /* Fügt eine vertikale Scrollbar hinzu */
+    padding: 8px; /* Platz für die Scrollbar */
+    box-sizing: border-box; /* Padding wird in die Breite einbezogen */
+  
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: flex-start; /* Elemente am oberen Rand ausrichten */
+  }
+  
+  .scrollbar nz-card {
+    background-color: #d9d9d97f; /* Standardfarbe für die Karte */
+  }
+  
+  .scrollbar nz-card:hover {
+    background-color: #ffffffcc; /* Hover-Farbe für die Karte */
+  }
+  
+  .scrollbar::-webkit-scrollbar {
+    width: 6px; /* Breite des vertikalen Scrollbalkens */
+  }
+  
+  .scrollbar::-webkit-scrollbar-thumb {
+    background-color: #dad7d7; /* Farbe des Scrollbalkens */
+    border-radius: 10px; /* Runde Ecken */
+  }
+  
+  .scrollbar::-webkit-scrollbar-thumb:hover {
+    background-color: #555; /* Farbe beim Hover */
+  }

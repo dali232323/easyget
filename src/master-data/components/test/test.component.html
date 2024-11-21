@@ -1,0 +1,35 @@
+
+<button nz-button  (click)="addNewCustomer()" nzType="primary">add new Customer</button>
+
+
+<form class="formular">
+    <input type="text" nz-input  placeholder="name" [formControl]="name" > 
+    <input type="text" nz-input placeholder="contact" [formControl]="contact" > 
+    <input type="text" nz-input placeholder="company" [formControl]="company" > 
+    <input type="text" nz-input placeholder="address" [formControl]="address" > 
+    <input type="text" nz-input placeholder="shipping" [formControl]="shipping" > 
+
+</form>
+
+{{name.value}}
+<div class="container">
+
+    @for(item of list;track $index){
+
+        <nz-card style="width:300px;" nzTitle="Customer Information" >
+            <p>ID : {{item.customer_id}}</p>
+            <p>Company Name: {{item.company_name}}</p>
+            <p>Contact: {{item.contact_info}}</p>
+            <p>billing_address: {{item.billing_address}}</p>
+            <p>default_shipping_addres: {{item.default_shipping_address}}</p>
+          </nz-card>
+          
+    }
+    
+    
+
+
+
+</div>
+
+

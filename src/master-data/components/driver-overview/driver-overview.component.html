@@ -1,0 +1,133 @@
+
+
+
+
+
+
+<div nz-row>
+    <!-- Linker Bereich mit Scrollbar -->
+    <div nz-col nzSpan="9" >
+        <div class="scrollbar">
+            @for(driver of ListOfDrivers;track $index) {
+                <nz-card style="width:220px;" [nzExtra]="extraTemplate">
+                  <p>{{driver.firstName}} {{driver.firstName}}</p>
+                  <p>{{driver.email}}</p>
+                  <p>{{driver.phone}}</p>
+                </nz-card>
+                <ng-template #extraTemplate>
+                    <a (click)="showDriverDetails(driver._id)">info</a>
+            
+                  </ng-template>
+              }
+        </div>
+    
+    </div>
+  
+    <!-- Rechter Bereich 10-->
+    <div nz-col nzSpan="10">
+      
+@if(actualDriverInfo){
+   
+
+
+    <nz-card [nzBordered]="true" nzTitle="Driver Information">
+
+        
+
+            <p><strong>Name:</strong> {{ actualDriverInfo.firstName }} {{ actualDriverInfo.lastName }}</p>
+            <p><strong>Phone:</strong> {{ actualDriverInfo.phone }}</p>
+            <p><strong>Email:</strong> {{ actualDriverInfo.email }}</p>
+            <p><strong>Date of Birth:</strong> {{ actualDriverInfo.dateOfBirth | date: 'longDate' }}</p>
+      
+            <nz-divider></nz-divider>
+      
+            <p><strong>Address:</strong></p>
+            <p>{{ actualDriverInfo.address.street }}</p>
+            <p>{{ actualDriverInfo.address.postalCode }}, {{ actualDriverInfo.address.city }}</p>
+            <p>{{ actualDriverInfo.address.country }}</p>
+      
+            <nz-divider></nz-divider>
+      
+            <p><strong>Driver License:</strong></p>
+            <p>License Number: {{ actualDriverInfo.driverLicense.licenseNumber }}</p>
+            <p>Categories: {{ actualDriverInfo.driverLicense.category.join(', ') }}</p>
+            <p>Expiry Date: {{ actualDriverInfo.driverLicense.expiryDate | date: 'longDate' }}</p>
+      
+            <nz-divider></nz-divider>
+      
+            <p><strong>Emergency Contact:</strong></p>
+            <p>Name: {{ actualDriverInfo.emergencyContact.name }}</p>
+            <p>Relationship: {{ actualDriverInfo.emergencyContact.relationship }}</p>
+            <p>Phone: {{ actualDriverInfo.emergencyContact.phone }}</p>
+       
+        
+      </nz-card>
+}
+
+    </div>
+    <div nz-col nzSpan="5">
+ 
+
+        <button nz-button [nzType]="'primary'" (click)="showModal()"><span>Show Modal</span></button>
+      </div>
+  </div>
+  
+
+
+
+  
+  <nz-modal [(nzVisible)]="isVisible" nzTitle="Create New Driver"   [nzFooter]="modalFooter" >
+  
+    
+    <ng-container *nzModalContent>
+        {{newDriverForm.value | json}}
+
+      isValid  {{newDriverForm.valid}}
+        <form [formGroup]="newDriverForm">
+
+            <div>
+                <nz-input-group [nzSuffix]="suffixTemplateInfo" [nzPrefix]="prefixTemplateUser">
+                    <input type="text" formControlName="firstName" nz-input placeholder="Enter your firstName" />
+                  </nz-input-group>
+                  <ng-template #prefixTemplateUser><span nz-icon nzType="user"></span></ng-template>
+                  <ng-template #suffixTemplateInfo>
+                    <span nz-icon nz-tooltip nzTooltipTitle="Extra information" nzType="info-circle"></span>
+                  </ng-template>
+             </div>
+             <div>
+                <nz-input-group [nzSuffix]="suffixTemplateInfo" [nzPrefix]="prefixTemplateUser">
+                    <input type="text"  formControlName="lastName" nz-input placeholder="Enter your lastName" />
+                  </nz-input-group>
+                  <ng-template #prefixTemplateUser><span nz-icon nzType="user"></span></ng-template>
+                  <ng-template #suffixTemplateInfo>
+                    <span nz-icon nz-tooltip nzTooltipTitle="Extra information" nzType="info-circle"></span>
+                  </ng-template>
+             </div>
+             <div>
+                <nz-input-group [nzSuffix]="suffixTemplateInfo" [nzPrefix]="prefixTemplateUser">
+                    <input type="email" formControlName="email" nz-input placeholder="Enter your email" />
+                  </nz-input-group>
+                  <ng-template #prefixTemplateUser><span nz-icon nzType="user"></span></ng-template>
+                  <ng-template #suffixTemplateInfo>
+                    <span nz-icon nz-tooltip nzTooltipTitle="Extra information" nzType="info-circle"></span>
+                  </ng-template>
+             </div>
+             <div>
+                <nz-input-group [nzSuffix]="suffixTemplateInfo" [nzPrefix]="prefixTemplateUser">
+                    <input type="number"  formControlName="phone" nz-input placeholder="Enter your phone" />
+                  </nz-input-group>
+                  <ng-template #prefixTemplateUser><span nz-icon nzType="user"></span></ng-template>
+                  <ng-template #suffixTemplateInfo>
+                    <span nz-icon nz-tooltip nzTooltipTitle="Extra information" nzType="info-circle"></span>
+                  </ng-template>
+             </div>
+        
+        </form>
+   
+    </ng-container>
+    <ng-template #modalFooter>
+        <span>Modal Footer:</span>
+        <button nz-button nzType="default"  (click)="handleCancel()">Custom Callback</button>
+        <button nz-button nzType="primary" [disabled]="!newDriverForm.valid" (click)="handleOk()" >Custom Submit</button>
+      </ng-template>
+  </nz-modal>
