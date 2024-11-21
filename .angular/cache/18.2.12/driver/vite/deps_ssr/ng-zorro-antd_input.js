@@ -10,10 +10,6 @@ import {
   NgControl
 } from "./chunk-KFLNUJDP.js";
 import {
-  NzOutletModule,
-  NzStringTemplateOutletDirective
-} from "./chunk-A4RXDZXP.js";
-import {
   NzIconDirective,
   NzIconModule
 } from "./chunk-W4YMX3AF.js";
@@ -23,10 +19,14 @@ import {
 } from "./chunk-YCGQ2VXD.js";
 import "./chunk-7LYRAPH3.js";
 import "./chunk-ASAZMDPO.js";
-import "./chunk-OIR4Y6EP.js";
+import {
+  NzOutletModule,
+  NzStringTemplateOutletDirective
+} from "./chunk-A4RXDZXP.js";
 import {
   Directionality
 } from "./chunk-ZS6ZLRIO.js";
+import "./chunk-OIR4Y6EP.js";
 import {
   getStatusClassNames,
   isNotNil

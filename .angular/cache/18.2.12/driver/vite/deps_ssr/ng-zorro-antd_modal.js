@@ -30,13 +30,9 @@ import {
   reqAnimFrame
 } from "./chunk-3Q4BWD3Z.js";
 import {
-  NzOutletModule,
-  NzStringTemplateOutletDirective
-} from "./chunk-A4RXDZXP.js";
-import {
   NzButtonComponent,
   NzButtonModule
-} from "./chunk-4SPNAEVD.js";
+} from "./chunk-D5AIZ42O.js";
 import {
   NzTransitionPatchDirective
 } from "./chunk-U7MP3DY2.js";
@@ -65,13 +61,17 @@ import {
   DomSanitizer
 } from "./chunk-7LYRAPH3.js";
 import "./chunk-ASAZMDPO.js";
-import "./chunk-XQZMWH4T.js";
 import {
-  NzConfigService
-} from "./chunk-OIR4Y6EP.js";
+  NzOutletModule,
+  NzStringTemplateOutletDirective
+} from "./chunk-A4RXDZXP.js";
+import "./chunk-XQZMWH4T.js";
 import {
   Directionality
 } from "./chunk-ZS6ZLRIO.js";
+import {
+  NzConfigService
+} from "./chunk-OIR4Y6EP.js";
 import {
   coerceArray,
   coerceElement,

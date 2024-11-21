@@ -1,44 +1,44 @@
-import { createRequire } from 'module';const require = createRequire(import.meta.url);
 import {
   NzNoAnimationDirective,
   collapseMotion,
   slideMotion,
   zoomBigMotion
-} from "./chunk-DZAIIHTO.js";
-import {
-  NavigationEnd,
-  Router,
-  RouterLink
-} from "./chunk-C32VJWDP.js";
+} from "./chunk-KURFQN5I.js";
 import {
   CdkConnectedOverlay,
   CdkOverlayOrigin,
   OverlayModule,
   POSITION_MAP,
   getPlacementName
-} from "./chunk-BRAFGSMM.js";
+} from "./chunk-L4J6K3QG.js";
 import {
-  NzOutletModule,
-  NzStringTemplateOutletDirective
-} from "./chunk-A4RXDZXP.js";
+  NavigationEnd,
+  Router,
+  RouterLink
+} from "./chunk-RAVHZVBK.js";
 import {
   NzIconDirective,
   NzIconModule
-} from "./chunk-W4YMX3AF.js";
+} from "./chunk-2ZSHFFSK.js";
 import {
   Platform
-} from "./chunk-YCGQ2VXD.js";
+} from "./chunk-A2W3MYWC.js";
+import {
+  NzOutletModule,
+  NzStringTemplateOutletDirective
+} from "./chunk-NQBQOHTN.js";
 import {
   Directionality
-} from "./chunk-ZS6ZLRIO.js";
+} from "./chunk-Y7IMMLVE.js";
 import {
   numberAttributeWithZeroFallback
-} from "./chunk-ANC5TNR7.js";
+} from "./chunk-ZP6N2CYP.js";
 import {
   NgClass,
   NgTemplateOutlet
-} from "./chunk-AWWGSX4I.js";
+} from "./chunk-JISQCBW2.js";
 import {
+  BehaviorSubject,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
@@ -52,14 +52,24 @@ import {
   NgModule,
   Output,
   Renderer2,
+  Subject,
   ViewChild,
   ViewEncapsulation$1,
+  auditTime,
   booleanAttribute,
+  combineLatest,
+  distinctUntilChanged,
+  filter,
   forwardRef,
   inject,
-  require_cjs,
-  require_operators,
+  map,
+  mapTo,
+  merge,
+  mergeMap,
   setClassMetadata,
+  startWith,
+  switchMap,
+  takeUntil,
   ɵɵInputTransformsFeature,
   ɵɵNgOnChangesFeature,
   ɵɵProvidersFeature,
@@ -98,14 +108,9 @@ import {
   ɵɵtext,
   ɵɵtextInterpolate,
   ɵɵviewQuery
-} from "./chunk-44JQ5FZC.js";
-import {
-  __toESM
-} from "./chunk-NQ4HTGF6.js";
+} from "./chunk-AHNW34SP.js";
 
 // node_modules/ng-zorro-antd/fesm2022/ng-zorro-antd-menu.mjs
-var import_rxjs = __toESM(require_cjs(), 1);
-var import_operators = __toESM(require_operators(), 1);
 var _c0 = ["nz-menu-item", ""];
 var _c1 = ["*"];
 var _c2 = ["nz-submenu-inline-child", ""];
@@ -247,12 +252,12 @@ var NzIsMenuInsideDropDownToken = new InjectionToken("NzIsInDropDownMenuToken");
 var NzMenuServiceLocalToken = new InjectionToken("NzMenuServiceLocalToken");
 var MenuService = class _MenuService {
   constructor() {
-    this.descendantMenuItemClick$ = new import_rxjs.Subject();
-    this.childMenuItemClick$ = new import_rxjs.Subject();
-    this.theme$ = new import_rxjs.BehaviorSubject("light");
-    this.mode$ = new import_rxjs.BehaviorSubject("vertical");
-    this.inlineIndent$ = new import_rxjs.BehaviorSubject(24);
-    this.isChildSubMenuOpen$ = new import_rxjs.BehaviorSubject(false);
+    this.descendantMenuItemClick$ = new Subject();
+    this.childMenuItemClick$ = new Subject();
+    this.theme$ = new BehaviorSubject("light");
+    this.mode$ = new BehaviorSubject("vertical");
+    this.inlineIndent$ = new BehaviorSubject(24);
+    this.isChildSubMenuOpen$ = new BehaviorSubject(false);
   }
   onDescendantMenuItemClick(menu) {
     this.descendantMenuItemClick$.next(menu);
@@ -303,7 +308,7 @@ var NzSubmenuService = class _NzSubmenuService {
   }
   constructor(nzMenuService) {
     this.nzMenuService = nzMenuService;
-    this.mode$ = this.nzMenuService.mode$.pipe((0, import_operators.map)((mode) => {
+    this.mode$ = this.nzMenuService.mode$.pipe(map((mode) => {
       if (mode === "inline") {
         return "inline";
       } else if (mode === "vertical" || this.nzHostSubmenuService) {
@@ -314,11 +319,11 @@ var NzSubmenuService = class _NzSubmenuService {
     }));
     this.level = 1;
     this.isMenuInsideDropDown = inject(NzIsMenuInsideDropDownToken);
-    this.isCurrentSubMenuOpen$ = new import_rxjs.BehaviorSubject(false);
-    this.isChildSubMenuOpen$ = new import_rxjs.BehaviorSubject(false);
-    this.isMouseEnterTitleOrOverlay$ = new import_rxjs.Subject();
-    this.childMenuItemClick$ = new import_rxjs.Subject();
-    this.destroy$ = new import_rxjs.Subject();
+    this.isCurrentSubMenuOpen$ = new BehaviorSubject(false);
+    this.isChildSubMenuOpen$ = new BehaviorSubject(false);
+    this.isMouseEnterTitleOrOverlay$ = new Subject();
+    this.childMenuItemClick$ = new Subject();
+    this.destroy$ = new Subject();
     this.nzHostSubmenuService = inject(_NzSubmenuService, {
       optional: true,
       skipSelf: true
@@ -326,10 +331,10 @@ var NzSubmenuService = class _NzSubmenuService {
     if (this.nzHostSubmenuService) {
       this.level = this.nzHostSubmenuService.level + 1;
     }
-    const isClosedByMenuItemClick = this.childMenuItemClick$.pipe((0, import_operators.mergeMap)(() => this.mode$), (0, import_operators.filter)((mode) => mode !== "inline" || this.isMenuInsideDropDown), (0, import_operators.mapTo)(false));
-    const isCurrentSubmenuOpen$ = (0, import_rxjs.merge)(this.isMouseEnterTitleOrOverlay$, isClosedByMenuItemClick);
-    const isSubMenuOpenWithDebounce$ = (0, import_rxjs.combineLatest)([this.isChildSubMenuOpen$, isCurrentSubmenuOpen$]).pipe((0, import_operators.map)(([isChildSubMenuOpen, isCurrentSubmenuOpen]) => isChildSubMenuOpen || isCurrentSubmenuOpen), (0, import_operators.auditTime)(150), (0, import_operators.distinctUntilChanged)(), (0, import_operators.takeUntil)(this.destroy$));
-    isSubMenuOpenWithDebounce$.pipe((0, import_operators.distinctUntilChanged)()).subscribe((data) => {
+    const isClosedByMenuItemClick = this.childMenuItemClick$.pipe(mergeMap(() => this.mode$), filter((mode) => mode !== "inline" || this.isMenuInsideDropDown), mapTo(false));
+    const isCurrentSubmenuOpen$ = merge(this.isMouseEnterTitleOrOverlay$, isClosedByMenuItemClick);
+    const isSubMenuOpenWithDebounce$ = combineLatest([this.isChildSubMenuOpen$, isCurrentSubmenuOpen$]).pipe(map(([isChildSubMenuOpen, isCurrentSubmenuOpen]) => isChildSubMenuOpen || isCurrentSubmenuOpen), auditTime(150), distinctUntilChanged(), takeUntil(this.destroy$));
+    isSubMenuOpenWithDebounce$.pipe(distinctUntilChanged()).subscribe((data) => {
       this.setOpenStateWithoutDebounce(data);
       if (this.nzHostSubmenuService) {
         this.nzHostSubmenuService.isChildSubMenuOpen$.next(data);
@@ -408,7 +413,7 @@ var NzMenuItemComponent = class _NzMenuItemComponent {
   constructor(nzMenuService, cdr) {
     this.nzMenuService = nzMenuService;
     this.cdr = cdr;
-    this.destroy$ = new import_rxjs.Subject();
+    this.destroy$ = new Subject();
     this.nzSubmenuService = inject(NzSubmenuService, {
       optional: true
     });
@@ -421,7 +426,7 @@ var NzMenuItemComponent = class _NzMenuItemComponent {
     });
     this.isMenuInsideDropDown = inject(NzIsMenuInsideDropDownToken);
     this.level = this.nzSubmenuService ? this.nzSubmenuService.level + 1 : 1;
-    this.selected$ = new import_rxjs.Subject();
+    this.selected$ = new Subject();
     this.inlinePaddingLeft = null;
     this.dir = "ltr";
     this.nzDisabled = false;
@@ -430,22 +435,22 @@ var NzMenuItemComponent = class _NzMenuItemComponent {
     this.nzMatchRouterExact = false;
     this.nzMatchRouter = false;
     if (this.router) {
-      this.router.events.pipe((0, import_operators.takeUntil)(this.destroy$), (0, import_operators.filter)((e) => e instanceof NavigationEnd)).subscribe(() => {
+      this.router.events.pipe(takeUntil(this.destroy$), filter((e) => e instanceof NavigationEnd)).subscribe(() => {
         this.updateRouterActive();
       });
     }
   }
   ngOnInit() {
-    (0, import_rxjs.combineLatest)([this.nzMenuService.mode$, this.nzMenuService.inlineIndent$]).pipe((0, import_operators.takeUntil)(this.destroy$)).subscribe(([mode, inlineIndent]) => {
+    combineLatest([this.nzMenuService.mode$, this.nzMenuService.inlineIndent$]).pipe(takeUntil(this.destroy$)).subscribe(([mode, inlineIndent]) => {
       this.inlinePaddingLeft = mode === "inline" ? this.level * inlineIndent : null;
     });
     this.dir = this.directionality.value;
-    this.directionality.change?.pipe((0, import_operators.takeUntil)(this.destroy$)).subscribe((direction) => {
+    this.directionality.change?.pipe(takeUntil(this.destroy$)).subscribe((direction) => {
       this.dir = direction;
     });
   }
   ngAfterContentInit() {
-    this.listOfRouterLink.changes.pipe((0, import_operators.takeUntil)(this.destroy$)).subscribe(() => this.updateRouterActive());
+    this.listOfRouterLink.changes.pipe(takeUntil(this.destroy$)).subscribe(() => this.updateRouterActive());
     this.updateRouterActive();
   }
   ngOnChanges(changes) {
@@ -606,7 +611,7 @@ var NzSubmenuInlineChildComponent = class _NzSubmenuInlineChildComponent {
     this.listOfCacheClassName = [];
     this.expandState = "collapsed";
     this.dir = "ltr";
-    this.destroy$ = new import_rxjs.Subject();
+    this.destroy$ = new Subject();
   }
   calcMotionState() {
     if (this.nzOpen) {
@@ -618,7 +623,7 @@ var NzSubmenuInlineChildComponent = class _NzSubmenuInlineChildComponent {
   ngOnInit() {
     this.calcMotionState();
     this.dir = this.directionality.value;
-    this.directionality.change?.pipe((0, import_operators.takeUntil)(this.destroy$)).subscribe((direction) => {
+    this.directionality.change?.pipe(takeUntil(this.destroy$)).subscribe((direction) => {
       this.dir = direction;
     });
   }
@@ -749,7 +754,7 @@ var NzSubmenuNoneInlineChildComponent = class _NzSubmenuNoneInlineChildComponent
     this.subMenuMouseState = new EventEmitter();
     this.expandState = "collapsed";
     this.dir = "ltr";
-    this.destroy$ = new import_rxjs.Subject();
+    this.destroy$ = new Subject();
   }
   setMouseState(state) {
     if (!this.nzDisabled) {
@@ -774,7 +779,7 @@ var NzSubmenuNoneInlineChildComponent = class _NzSubmenuNoneInlineChildComponent
   ngOnInit() {
     this.calcMotionState();
     this.dir = this.directionality.value;
-    this.directionality.change?.pipe((0, import_operators.takeUntil)(this.destroy$)).subscribe((direction) => {
+    this.directionality.change?.pipe(takeUntil(this.destroy$)).subscribe((direction) => {
       this.dir = direction;
     });
   }
@@ -937,11 +942,11 @@ var NzSubMenuTitleComponent = class _NzSubMenuTitleComponent {
     this.toggleSubMenu = new EventEmitter();
     this.subMenuMouseState = new EventEmitter();
     this.dir = "ltr";
-    this.destroy$ = new import_rxjs.Subject();
+    this.destroy$ = new Subject();
   }
   ngOnInit() {
     this.dir = this.directionality.value;
-    this.directionality.change?.pipe((0, import_operators.takeUntil)(this.destroy$)).subscribe((direction) => {
+    this.directionality.change?.pipe(takeUntil(this.destroy$)).subscribe((direction) => {
       this.dir = direction;
       this.cdr.detectChanges();
     });
@@ -1146,7 +1151,7 @@ var NzSubMenuComponent = class _NzSubMenuComponent {
     this.listOfNzSubMenuComponent = null;
     this.listOfNzMenuItemDirective = null;
     this.level = this.nzSubmenuService.level;
-    this.destroy$ = new import_rxjs.Subject();
+    this.destroy$ = new Subject();
     this.position = "right";
     this.triggerWidth = null;
     this.theme = "light";
@@ -1164,11 +1169,11 @@ var NzSubMenuComponent = class _NzSubMenuComponent {
     this.directionality = inject(Directionality);
   }
   ngOnInit() {
-    this.nzMenuService.theme$.pipe((0, import_operators.takeUntil)(this.destroy$)).subscribe((theme) => {
+    this.nzMenuService.theme$.pipe(takeUntil(this.destroy$)).subscribe((theme) => {
       this.theme = theme;
       this.cdr.markForCheck();
     });
-    this.nzSubmenuService.mode$.pipe((0, import_operators.takeUntil)(this.destroy$)).subscribe((mode) => {
+    this.nzSubmenuService.mode$.pipe(takeUntil(this.destroy$)).subscribe((mode) => {
       this.mode = mode;
       if (mode === "horizontal") {
         this.overlayPositions = [POSITION_MAP[this.nzPlacement], ...listOfHorizontalPositions];
@@ -1177,11 +1182,11 @@ var NzSubMenuComponent = class _NzSubMenuComponent {
       }
       this.cdr.markForCheck();
     });
-    (0, import_rxjs.combineLatest)([this.nzSubmenuService.mode$, this.nzMenuService.inlineIndent$]).pipe((0, import_operators.takeUntil)(this.destroy$)).subscribe(([mode, inlineIndent]) => {
+    combineLatest([this.nzSubmenuService.mode$, this.nzMenuService.inlineIndent$]).pipe(takeUntil(this.destroy$)).subscribe(([mode, inlineIndent]) => {
       this.inlinePaddingLeft = mode === "inline" ? this.level * inlineIndent : null;
       this.cdr.markForCheck();
     });
-    this.nzSubmenuService.isCurrentSubMenuOpen$.pipe((0, import_operators.takeUntil)(this.destroy$)).subscribe((open) => {
+    this.nzSubmenuService.isCurrentSubMenuOpen$.pipe(takeUntil(this.destroy$)).subscribe((open) => {
       this.isActive = open;
       if (open !== this.nzOpen) {
         this.setTriggerWidth();
@@ -1191,7 +1196,7 @@ var NzSubMenuComponent = class _NzSubMenuComponent {
       }
     });
     this.dir = this.directionality.value;
-    this.directionality.change?.pipe((0, import_operators.takeUntil)(this.destroy$)).subscribe((direction) => {
+    this.directionality.change?.pipe(takeUntil(this.destroy$)).subscribe((direction) => {
       this.dir = direction;
       this.cdr.markForCheck();
     });
@@ -1200,8 +1205,8 @@ var NzSubMenuComponent = class _NzSubMenuComponent {
     this.setTriggerWidth();
     const listOfNzMenuItemDirective = this.listOfNzMenuItemDirective;
     const changes = listOfNzMenuItemDirective.changes;
-    const mergedObservable = (0, import_rxjs.merge)(...[changes, ...listOfNzMenuItemDirective.map((menu) => menu.selected$)]);
-    changes.pipe((0, import_operators.startWith)(listOfNzMenuItemDirective), (0, import_operators.switchMap)(() => mergedObservable), (0, import_operators.startWith)(true), (0, import_operators.map)(() => listOfNzMenuItemDirective.some((e) => e.nzSelected)), (0, import_operators.takeUntil)(this.destroy$)).subscribe((selected) => {
+    const mergedObservable = merge(...[changes, ...listOfNzMenuItemDirective.map((menu) => menu.selected$)]);
+    changes.pipe(startWith(listOfNzMenuItemDirective), switchMap(() => mergedObservable), startWith(true), map(() => listOfNzMenuItemDirective.some((e) => e.nzSelected)), takeUntil(this.destroy$)).subscribe((selected) => {
       this.isSelected = selected;
       this.cdr.markForCheck();
     });
@@ -1498,33 +1503,33 @@ var NzMenuDirective = class _NzMenuDirective {
     this.nzClick = new EventEmitter();
     this.actualMode = "vertical";
     this.dir = "ltr";
-    this.inlineCollapsed$ = new import_rxjs.BehaviorSubject(this.nzInlineCollapsed);
-    this.mode$ = new import_rxjs.BehaviorSubject(this.nzMode);
-    this.destroy$ = new import_rxjs.Subject();
+    this.inlineCollapsed$ = new BehaviorSubject(this.nzInlineCollapsed);
+    this.mode$ = new BehaviorSubject(this.nzMode);
+    this.destroy$ = new Subject();
     this.listOfOpenedNzSubMenuComponent = [];
     this.directionality = inject(Directionality);
   }
   ngOnInit() {
-    (0, import_rxjs.combineLatest)([this.inlineCollapsed$, this.mode$]).pipe((0, import_operators.takeUntil)(this.destroy$)).subscribe(([inlineCollapsed, mode]) => {
+    combineLatest([this.inlineCollapsed$, this.mode$]).pipe(takeUntil(this.destroy$)).subscribe(([inlineCollapsed, mode]) => {
       this.actualMode = inlineCollapsed ? "vertical" : mode;
       this.nzMenuService.setMode(this.actualMode);
       this.cdr.markForCheck();
     });
-    this.nzMenuService.descendantMenuItemClick$.pipe((0, import_operators.takeUntil)(this.destroy$)).subscribe((menu) => {
+    this.nzMenuService.descendantMenuItemClick$.pipe(takeUntil(this.destroy$)).subscribe((menu) => {
       this.nzClick.emit(menu);
       if (this.nzSelectable && !menu.nzMatchRouter) {
         this.listOfNzMenuItemDirective.forEach((item) => item.setSelectedState(item === menu));
       }
     });
     this.dir = this.directionality.value;
-    this.directionality.change?.pipe((0, import_operators.takeUntil)(this.destroy$)).subscribe((direction) => {
+    this.directionality.change?.pipe(takeUntil(this.destroy$)).subscribe((direction) => {
       this.dir = direction;
       this.nzMenuService.setMode(this.actualMode);
       this.cdr.markForCheck();
     });
   }
   ngAfterContentInit() {
-    this.inlineCollapsed$.pipe((0, import_operators.takeUntil)(this.destroy$)).subscribe(() => {
+    this.inlineCollapsed$.pipe(takeUntil(this.destroy$)).subscribe(() => {
       this.updateInlineCollapse();
       this.cdr.markForCheck();
     });
@@ -1905,4 +1910,4 @@ export {
   NzMenuDividerDirective,
   NzMenuModule
 };
-//# sourceMappingURL=chunk-ZRN7PHPJ.js.map
+//# sourceMappingURL=chunk-UUOG5WLA.js.map

@@ -7,13 +7,13 @@ import {
   __decorate
 } from "./chunk-XQZMWH4T.js";
 import {
-  NzConfigService,
-  WithConfig
-} from "./chunk-OIR4Y6EP.js";
-import {
   BidiModule,
   Directionality
 } from "./chunk-ZS6ZLRIO.js";
+import {
+  NzConfigService,
+  WithConfig
+} from "./chunk-OIR4Y6EP.js";
 import {
   toCssPixel
 } from "./chunk-ANC5TNR7.js";

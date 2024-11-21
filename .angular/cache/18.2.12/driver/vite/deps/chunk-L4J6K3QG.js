@@ -4,7 +4,15 @@ import {
 } from "./chunk-HKOFUEFD.js";
 import {
   NzDestroyService
-} from "./chunk-RMKMMOWO.js";
+} from "./chunk-EBEDFM2J.js";
+import {
+  Platform,
+  RtlScrollAxisType,
+  _getEventTarget,
+  _isTestEnvironment,
+  getRtlScrollAxisType,
+  supportsScrollBehavior
+} from "./chunk-A2W3MYWC.js";
 import {
   BidiModule,
   Directionality
@@ -15,14 +23,6 @@ import {
   coerceElement,
   coerceNumberProperty
 } from "./chunk-ZP6N2CYP.js";
-import {
-  Platform,
-  RtlScrollAxisType,
-  _getEventTarget,
-  _isTestEnvironment,
-  getRtlScrollAxisType,
-  supportsScrollBehavior
-} from "./chunk-A2W3MYWC.js";
 import {
   DOCUMENT,
   Location
@@ -5470,4 +5470,4 @@ export {
   NzOverlayModule,
   overlayZIndexSetter
 };
-//# sourceMappingURL=chunk-HUKQ2VYY.js.map
+//# sourceMappingURL=chunk-L4J6K3QG.js.map

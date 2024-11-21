@@ -13,12 +13,12 @@ import {
   __decorate
 } from "./chunk-XQZMWH4T.js";
 import {
+  Directionality
+} from "./chunk-ZS6ZLRIO.js";
+import {
   NzConfigService,
   WithConfig
 } from "./chunk-OIR4Y6EP.js";
-import {
-  Directionality
-} from "./chunk-ZS6ZLRIO.js";
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -437,4 +437,4 @@ export {
   NzButtonGroupComponent,
   NzButtonModule
 };
-//# sourceMappingURL=chunk-4SPNAEVD.js.map
+//# sourceMappingURL=chunk-D5AIZ42O.js.map

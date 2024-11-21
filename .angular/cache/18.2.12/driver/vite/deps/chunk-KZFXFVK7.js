@@ -21,11 +21,7 @@ import {
 } from "./chunk-HKOFUEFD.js";
 import {
   BreakpointObserver
-} from "./chunk-RMKMMOWO.js";
-import {
-  coerceElement,
-  coerceNumberProperty
-} from "./chunk-ZP6N2CYP.js";
+} from "./chunk-EBEDFM2J.js";
 import {
   Platform,
   _getEventTarget,
@@ -33,6 +29,10 @@ import {
   _getShadowRoot,
   normalizePassiveListenerOptions
 } from "./chunk-A2W3MYWC.js";
+import {
+  coerceElement,
+  coerceNumberProperty
+} from "./chunk-ZP6N2CYP.js";
 import {
   DOCUMENT
 } from "./chunk-JISQCBW2.js";
@@ -2843,4 +2843,4 @@ export {
   CdkMonitorFocus,
   A11yModule
 };
-//# sourceMappingURL=chunk-5PXLVF4A.js.map
+//# sourceMappingURL=chunk-KZFXFVK7.js.map

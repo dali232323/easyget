@@ -14,10 +14,6 @@ import {
 } from "./chunk-BRAFGSMM.js";
 import "./chunk-3YOFDFM3.js";
 import "./chunk-3Q4BWD3Z.js";
-import {
-  NzOutletModule,
-  NzStringTemplateOutletDirective
-} from "./chunk-A4RXDZXP.js";
 import "./chunk-CIHALHQS.js";
 import "./chunk-6X5EYYNP.js";
 import {
@@ -26,12 +22,16 @@ import {
 import "./chunk-7LYRAPH3.js";
 import "./chunk-ASAZMDPO.js";
 import {
-  NzConfigService,
-  isPresetColor
-} from "./chunk-OIR4Y6EP.js";
+  NzOutletModule,
+  NzStringTemplateOutletDirective
+} from "./chunk-A4RXDZXP.js";
 import {
   Directionality
 } from "./chunk-ZS6ZLRIO.js";
+import {
+  NzConfigService,
+  isPresetColor
+} from "./chunk-OIR4Y6EP.js";
 import {
   isNotNil,
   toBoolean
