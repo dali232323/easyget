@@ -1,11 +1,11 @@
 import { createRequire } from 'module';const require = createRequire(import.meta.url);
 import {
+  __decorate
+} from "./chunk-XQZMWH4T.js";
+import {
   NzOutletModule,
   NzStringTemplateOutletDirective
 } from "./chunk-A4RXDZXP.js";
-import {
-  __decorate
-} from "./chunk-XQZMWH4T.js";
 import {
   BidiModule,
   Directionality

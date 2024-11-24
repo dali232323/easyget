@@ -71,14 +71,14 @@ nz-header {
 }
 
 nz-content {
-  margin: 24px;
+  /* margin: 24px; */
 }
 
 .inner-content {
   padding: 24px;
   background: #fff;
-  height: 83vh; /* Höhe beschränken */
-  max-height: 83vh; /* Sicherstellen, dass es nicht größer wird */
+  height: 87vh; /* Höhe beschränken */
+  max-height: 87vh; /* Sicherstellen, dass es nicht größer wird */
   overflow-y: auto; /* Scrollen aktivieren, wenn der Inhalt zu groß ist */
   box-sizing: border-box; /* Padding wird in die Höhe/Breite einbezogen */
 }

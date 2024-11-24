@@ -1,0 +1,20 @@
+<div class="map-container">
+    <google-map
+      height="500px"
+      width="100%"
+      [center]="center"
+      [zoom]="zoom">
+
+      @for(marker of markers; track marker){
+        <map-marker 
+        
+        [position]="marker.position"
+        [title]="marker.title"
+        [label]="marker.label"
+        
+        [icon]="marker.icon">
+      </map-marker>
+      }
+     
+    </google-map>
+  </div>

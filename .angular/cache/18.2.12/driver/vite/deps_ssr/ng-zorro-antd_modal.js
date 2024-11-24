@@ -1,8 +1,5 @@
 import { createRequire } from 'module';const require = createRequire(import.meta.url);
 import {
-  NzI18nService
-} from "./chunk-QE2TTO5U.js";
-import {
   FocusTrapFactory,
   isFakeMousedownFromScreenReader,
   isFakeTouchstartFromScreenReader
@@ -21,18 +18,16 @@ import {
   TemplatePortal,
   ViewportRuler,
   overlayZIndexSetter
-} from "./chunk-BRAFGSMM.js";
+} from "./chunk-73M4YJIJ.js";
 import {
   ESCAPE,
   hasModifierKey
 } from "./chunk-3YOFDFM3.js";
 import {
-  reqAnimFrame
-} from "./chunk-3Q4BWD3Z.js";
-import {
   NzButtonComponent,
   NzButtonModule
-} from "./chunk-D5AIZ42O.js";
+} from "./chunk-W7Q27QE3.js";
+import "./chunk-XQZMWH4T.js";
 import {
   NzTransitionPatchDirective
 } from "./chunk-U7MP3DY2.js";
@@ -48,30 +43,31 @@ import {
   trigger
 } from "./chunk-6X5EYYNP.js";
 import {
+  NzOutletModule,
+  NzStringTemplateOutletDirective
+} from "./chunk-A4RXDZXP.js";
+import {
+  reqAnimFrame
+} from "./chunk-3Q4BWD3Z.js";
+import {
+  Directionality
+} from "./chunk-ZS6ZLRIO.js";
+import {
+  NzI18nService
+} from "./chunk-QE2TTO5U.js";
+import {
   NzIconDirective,
   NzIconModule
-} from "./chunk-W4YMX3AF.js";
+} from "./chunk-FQQ4AQVG.js";
 import "./chunk-PS76RWRV.js";
+import {
+  NzConfigService
+} from "./chunk-OIR4Y6EP.js";
 import {
   _getEventTarget,
   _getShadowRoot,
   normalizePassiveListenerOptions
 } from "./chunk-YCGQ2VXD.js";
-import {
-  DomSanitizer
-} from "./chunk-7LYRAPH3.js";
-import "./chunk-ASAZMDPO.js";
-import {
-  NzOutletModule,
-  NzStringTemplateOutletDirective
-} from "./chunk-A4RXDZXP.js";
-import "./chunk-XQZMWH4T.js";
-import {
-  Directionality
-} from "./chunk-ZS6ZLRIO.js";
-import {
-  NzConfigService
-} from "./chunk-OIR4Y6EP.js";
 import {
   coerceArray,
   coerceElement,
@@ -85,6 +81,10 @@ import {
   toDecimal,
   warn
 } from "./chunk-ANC5TNR7.js";
+import {
+  DomSanitizer
+} from "./chunk-7LYRAPH3.js";
+import "./chunk-ASAZMDPO.js";
 import {
   DOCUMENT,
   NgClass,

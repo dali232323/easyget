@@ -6,11 +6,18 @@
 
 <div nz-row>
     <!-- Linker Bereich mit Scrollbar -->
-    <div nz-col nzSpan="9" >
+    <div nz-col nzSpan="12" >
+      <div class="header-section">
+        <button nz-button [nzType]="'primary'" (click)="showModal()"><span>create New Driver</span></button>
+        <input [(ngModel)]="filterText" 
+        (ngModelChange)="filterDrivers()" 
+         nz-input placeholder="Search by name, phone or email" />
+      </div>
+     
         <div class="scrollbar">
-            @for(driver of ListOfDrivers;track $index) {
+            @for(driver of filteredDrivers;track $index) {
                 <nz-card style="width:220px;" [nzExtra]="extraTemplate">
-                  <p>{{driver.firstName}} {{driver.firstName}}</p>
+                  <p>{{driver.firstName}} {{driver.lastName}}</p>
                   <p>{{driver.email}}</p>
                   <p>{{driver.phone}}</p>
                 </nz-card>
@@ -24,13 +31,13 @@
     </div>
   
     <!-- Rechter Bereich 10-->
-    <div nz-col nzSpan="10">
+    <div nz-col nzSpan="12">
       
 @if(actualDriverInfo){
    
 
 
-    <nz-card [nzBordered]="true" nzTitle="Driver Information">
+    <nz-card [nzBordered]="true" nzTitle="Driver Information"  [nzExtra]="editTemplate">
 
         
 
@@ -62,72 +69,122 @@
        
         
       </nz-card>
+
+      <ng-template #editTemplate>
+        <a (click)="editDriver(actualDriverInfo)">edit</a>
+      </ng-template>
 }
 
     </div>
-    <div nz-col nzSpan="5">
- 
-
-        <button nz-button [nzType]="'primary'" (click)="showModal()"><span>Show Modal</span></button>
-      </div>
+  
   </div>
   
 
 
 
   
-  <nz-modal [(nzVisible)]="isVisible" nzTitle="Create New Driver"   [nzFooter]="modalFooter" >
-  
+  <nz-modal 
+  [(nzVisible)]="isVisible" 
+  (nzOnCancel)="handleCancel()" 
+  [nzTitle]="isEditMode ? 'Edit Driver' : 'Create New Driver'" 
+  [nzFooter]="modalFooter" 
+  [nzWidth]="'70%'"
+ >
+
+  <ng-container *nzModalContent>
+    <form [formGroup]="newDriverForm" class="driver-form">
+      <!-- Basic Information -->
+      <div class="form-section">
+        <label><i nz-icon nzType="user" nzTheme="outline"></i> First Name</label>
+        <input type="text" formControlName="firstName" nz-input placeholder="Enter your first name" />
+ 
+        <label><i nz-icon nzType="user" nzTheme="outline"></i> Last Name</label>
+        <input type="text" formControlName="lastName" nz-input placeholder="Enter your last name" />
+
+        <label><i nz-icon nzType="mail" nzTheme="outline"></i> Email</label>
+        <input type="email" formControlName="email" nz-input placeholder="Enter your email" />
     
-    <ng-container *nzModalContent>
-        {{newDriverForm.value | json}}
+        <label><i nz-icon nzType="phone" nzTheme="outline"></i> Phone</label>
+        <input type="number" formControlName="phone" nz-input placeholder="Enter your phone" />
+     
+        <label><i nz-icon nzType="calendar" nzTheme="outline"></i> Date of Birth</label>
+        <input type="date" formControlName="dateOfBirth" nz-input placeholder="Enter your date of birth" />
+      </div>
 
-      isValid  {{newDriverForm.valid}}
-        <form [formGroup]="newDriverForm">
+      <!-- Address Section -->
+      <div class="form-section" formGroupName="address">
+        <h3><i nz-icon nzType="home" nzTheme="outline"></i> Address</h3>
+        <label>Street</label>
+        <input type="text" formControlName="street" nz-input placeholder="Street" />
+        <label>Postal Code</label>
+        <input type="text" formControlName="postalCode" nz-input placeholder="Postal Code" />
+        <label>City</label>
+        <input type="text" formControlName="city" nz-input placeholder="City" />
+        <label>Country</label>
+        <input type="text" formControlName="country" nz-input placeholder="Country" />
+      </div>
 
-            <div>
-                <nz-input-group [nzSuffix]="suffixTemplateInfo" [nzPrefix]="prefixTemplateUser">
-                    <input type="text" formControlName="firstName" nz-input placeholder="Enter your firstName" />
-                  </nz-input-group>
-                  <ng-template #prefixTemplateUser><span nz-icon nzType="user"></span></ng-template>
-                  <ng-template #suffixTemplateInfo>
-                    <span nz-icon nz-tooltip nzTooltipTitle="Extra information" nzType="info-circle"></span>
-                  </ng-template>
-             </div>
-             <div>
-                <nz-input-group [nzSuffix]="suffixTemplateInfo" [nzPrefix]="prefixTemplateUser">
-                    <input type="text"  formControlName="lastName" nz-input placeholder="Enter your lastName" />
-                  </nz-input-group>
-                  <ng-template #prefixTemplateUser><span nz-icon nzType="user"></span></ng-template>
-                  <ng-template #suffixTemplateInfo>
-                    <span nz-icon nz-tooltip nzTooltipTitle="Extra information" nzType="info-circle"></span>
-                  </ng-template>
-             </div>
-             <div>
-                <nz-input-group [nzSuffix]="suffixTemplateInfo" [nzPrefix]="prefixTemplateUser">
-                    <input type="email" formControlName="email" nz-input placeholder="Enter your email" />
-                  </nz-input-group>
-                  <ng-template #prefixTemplateUser><span nz-icon nzType="user"></span></ng-template>
-                  <ng-template #suffixTemplateInfo>
-                    <span nz-icon nz-tooltip nzTooltipTitle="Extra information" nzType="info-circle"></span>
-                  </ng-template>
-             </div>
-             <div>
-                <nz-input-group [nzSuffix]="suffixTemplateInfo" [nzPrefix]="prefixTemplateUser">
-                    <input type="number"  formControlName="phone" nz-input placeholder="Enter your phone" />
-                  </nz-input-group>
-                  <ng-template #prefixTemplateUser><span nz-icon nzType="user"></span></ng-template>
-                  <ng-template #suffixTemplateInfo>
-                    <span nz-icon nz-tooltip nzTooltipTitle="Extra information" nzType="info-circle"></span>
-                  </ng-template>
-             </div>
-        
-        </form>
-   
-    </ng-container>
-    <ng-template #modalFooter>
-        <span>Modal Footer:</span>
-        <button nz-button nzType="default"  (click)="handleCancel()">Custom Callback</button>
-        <button nz-button nzType="primary" [disabled]="!newDriverForm.valid" (click)="handleOk()" >Custom Submit</button>
-      </ng-template>
-  </nz-modal>
+      <!-- Location Section -->
+      <div class="form-section" formGroupName="location">
+        <h3><i nz-icon nzType="environment" nzTheme="outline"></i> Location</h3>
+        <label>Latitude</label>
+        <input type="number" formControlName="latitude" nz-input placeholder="Latitude" />
+        <label>Longitude</label>
+        <input type="number" formControlName="longitude" nz-input placeholder="Longitude" />
+      </div>
+
+      <!-- Driver License Section -->
+      <div class="form-section" formGroupName="driverLicense">
+        <h3><i nz-icon nzType="idcard" nzTheme="outline"></i> Driver License</h3>
+        <label>License Number</label>
+        <input type="text" formControlName="licenseNumber" nz-input placeholder="License Number" />
+        <label>Category</label>
+        <select formControlName="category" nz-input multiple>
+          <option *ngFor="let category of licenseCategories" [value]="category">{{ category }}</option>
+        </select>
+        <label>Expiry Date</label>
+        <input type="date" formControlName="expiryDate" nz-input placeholder="Expiry Date" />
+      </div>
+
+      <!-- Employment Details Section -->
+      <div class="form-section" formGroupName="employmentDetails">
+        <h3><i nz-icon nzType="solution" nzTheme="outline"></i> Employment Details</h3>
+        <label>Hire Date</label>
+        <input type="date" formControlName="hireDate" nz-input placeholder="Hire Date" />
+        <label>Status</label>
+        <input type="text" formControlName="status" nz-input placeholder="Employment Status" />
+        <label>Position</label>
+        <input type="text" formControlName="position" nz-input placeholder="Position" />
+        <label>Assigned Vehicle</label>
+        <input type="text" formControlName="assignedVehicle" nz-input placeholder="Assigned Vehicle" />
+      </div>
+
+      <!-- Emergency Contact Section -->
+      <div class="form-section" formGroupName="emergencyContact">
+        <h3><i nz-icon nzType="team" nzTheme="outline"></i> Emergency Contact</h3>
+        <label>Name</label>
+        <input type="text" formControlName="name" nz-input placeholder="Name" />
+        <label>Relationship</label>
+        <input type="text" formControlName="relationship" nz-input placeholder="Relationship" />
+        <label>Phone</label>
+        <input type="number" formControlName="phone" nz-input placeholder="Phone" />
+      </div>
+
+      <!-- Additional Fields -->
+      <div class="form-section">
+        <label><i nz-icon nzType="file-text" nzTheme="outline"></i> Notes</label>
+        <textarea formControlName="notes" nz-input placeholder="Notes"></textarea>
+      </div>
+
+      
+    </form>
+  </ng-container>
+
+  <ng-template #modalFooter >
+    <div class="footer">
+      <button nz-button nzType="default" (click)="handleCancel()">Close</button>
+    <button nz-button nzType="primary" [disabled]="!newDriverForm.valid" (click)="saveDriver()">Save</button>
+    </div>
+    
+  </ng-template>
+</nz-modal>

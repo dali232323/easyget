@@ -11,11 +11,11 @@
   }
   
   .scrollbar nz-card {
-    background-color: #d9d9d97f; /* Standardfarbe für die Karte */
+   
   }
   
   .scrollbar nz-card:hover {
-    background-color: #ffffffcc; /* Hover-Farbe für die Karte */
+    background-color: #e8e8e8cc; /* Hover-Farbe für die Karte */
   }
   
   .scrollbar::-webkit-scrollbar {
@@ -29,4 +29,76 @@
   
   .scrollbar::-webkit-scrollbar-thumb:hover {
     background-color: #555; /* Farbe beim Hover */
+  }
+
+
+
+  
+  .form-section label {
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  
+  h3 {
+    font-size: 1.2em;
+    margin-bottom: 8px;
+  }
+  
+  textarea {
+    min-height: 80px;
+    resize: vertical;
+  }
+  
+  .form-actions {
+    display: flex;
+    justify-content: center;
+  }
+  
+  button[nz-button] {
+    width: 100%;
+  }
+
+  .driver-form {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Drei Spalten */
+    gap: 16px;
+  }
+  
+  .form-section {
+    display: flex;
+    flex-direction: column;
+    max-width: 300px; /* Begrenzte Breite */
+  }
+  
+  textarea {
+    grid-column: span 3; /* Textarea über alle drei Spalten */
+  }
+  
+  h3 {
+    grid-column: span 3; /* Überschriften über alle drei Spalten */
+    font-size: 1.2em;
+    margin-bottom: 8px;
+  }
+  
+  button[nz-button] {
+    width: 100%;
+  }
+  
+
+  .footer{
+    justify-content: flex-end;
+    display: flex;
+
+   
+  }
+  .header-section{
+    display: flex;
+   padding: 10px;
+   margin: 10px;
+    gap:16px;
+    
+    border-radius: 7px;
+    background-color: rgb(232, 230, 230);
   }
