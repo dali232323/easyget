@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Inject, PLATFORM_ID } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
@@ -9,6 +9,7 @@ import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { WelcomeComponent } from "./pages/welcome/welcome.component";
 import { DriverOverviewComponent } from "../master-data/components/driver-overview/driver-overview.component";
 import { Interface } from 'readline';
+import { GoogleMapsLoaderService } from '../shared/google-maps-loader.service';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -21,7 +22,23 @@ export class AppComponent {
   index = 0;
   tabs:ta[] = [];
 
-  constructor(private router: Router, private cdr: ChangeDetectorRef) {}
+  constructor(private router: Router, private cdr: ChangeDetectorRef, private googleMapsLoader: GoogleMapsLoaderService,  @Inject(PLATFORM_ID) private platformId: Object) {}
+
+  ngOnInit(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      // Nur im Browser ausführen
+      this.googleMapsLoader
+        .loadGoogleMaps()
+        .then(() => {
+          console.log('Google Maps API loaded successfully.');
+        })
+        .catch((error) => {
+          console.error('Failed to load Google Maps API:', error);
+        });
+    } else {
+      console.warn('Google Maps API can only be loaded in the browser.');
+    }
+  }
 
   // Öffne einen neuen Tab oder wechsle zu einem existierenden Tab
   openTab(title: string, route: string) {

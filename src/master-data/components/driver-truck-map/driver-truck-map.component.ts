@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { GoogleMapsModule, MapMarker } from '@angular/google-maps';
+import { GoogleMapsLoaderService } from '../../../shared/google-maps-loader.service';
 @Component({
   selector: 'app-driver-truck-map',
   standalone: true,
@@ -16,6 +17,8 @@ export class DriverTruckMapComponent {
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
+
+
     // Holen der Daten von deinem Backend
     this.http.get<any[]>('http://localhost:3001/map/map-data').subscribe(data => {
       this.markers = data.map(item => ({
@@ -33,6 +36,9 @@ export class DriverTruckMapComponent {
       }));
     });
   }
+
+
+
 
   getIcon(type: string): google.maps.Icon {
     const baseUrl = 'assets/icons/'; // Basispfad für die Icons
