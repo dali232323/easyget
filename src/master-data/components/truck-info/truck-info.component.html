@@ -1,0 +1,50 @@
+<button (click)="getData()">TEST GET DATA</button>
+
+
+
+<!-- @if(actualDriverInfo){
+   
+
+
+    <nz-card [nzBordered]="true" nzTitle="Driver Information"  [nzExtra]="editTemplate">
+
+        
+
+            <p><strong>Name:</strong> {{ actualDriverInfo.firstName }} {{ actualDriverInfo.lastName }}</p>
+            <p><strong>Phone:</strong> {{ actualDriverInfo.phone }}</p>
+            <p><strong>Email:</strong> {{ actualDriverInfo.email }}</p>
+            <p><strong>Date of Birth:</strong> {{ actualDriverInfo.dateOfBirth | date: 'longDate' }}</p>
+      
+            <nz-divider></nz-divider>
+      
+            <p><strong>Address:</strong></p>
+            <p>{{ actualDriverInfo.address.street }}</p>
+            <p>{{ actualDriverInfo.address.postalCode }}, {{ actualDriverInfo.address.city }}</p>
+            <p>{{ actualDriverInfo.address.country }}</p>
+      
+            <nz-divider></nz-divider>
+      
+            <p><strong>Driver License:</strong></p>
+            <p>License Number: {{ actualDriverInfo.driverLicense.licenseNumber }}</p>
+            <p>Categories: {{ actualDriverInfo.driverLicense.category.join(', ') }}</p>
+            <p>Expiry Date: {{ actualDriverInfo.driverLicense.expiryDate | date: 'longDate' }}</p>
+      
+            <nz-divider></nz-divider>
+      
+            <p><strong>Emergency Contact:</strong></p>
+            <p>Name: {{ actualDriverInfo.emergencyContact.name }}</p>
+            <p>Relationship: {{ actualDriverInfo.emergencyContact.relationship }}</p>
+            <p>Phone: {{ actualDriverInfo.emergencyContact.phone }}</p>
+       
+        
+      </nz-card>
+
+      <ng-template #editTemplate>
+        <a (click)="editDriver(actualDriverInfo)">edit</a>
+      </ng-template>
+} -->
+
+
+<nz-card >
+    Resluts = {{TestInformations}}
+</nz-card>

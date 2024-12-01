@@ -3,6 +3,7 @@ import { WelcomeComponent } from './pages/welcome/welcome.component';
 import { DriverOverviewComponent } from '../master-data/components/driver-overview/driver-overview.component';
 import { TestComponent } from '../master-data/components/test/test.component';
 import { DriverTruckMapComponent } from '../master-data/components/driver-truck-map/driver-truck-map.component';
+import { TruckInfoComponent } from '../master-data/components/truck-info/truck-info.component';
 
 // export const routes: Routes = [
 //   { path: '', pathMatch: 'full', redirectTo: '/welcome' },
@@ -17,7 +18,7 @@ export const routes: Routes = [
   { path: 'welcome', component: WelcomeComponent },
   { path: 'driver-overview', component: DriverOverviewComponent },
   { path: 'driver-truck-map', component: DriverTruckMapComponent },
-  
+  { path: 'truck-info-card', component: TruckInfoComponent },
   { path: 'test', component: TestComponent },
   { path: '**', redirectTo: 'welcome' }
 ];
